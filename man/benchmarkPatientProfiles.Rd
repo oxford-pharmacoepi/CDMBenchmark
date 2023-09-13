@@ -8,6 +8,10 @@ benchmarkPatientProfiles(cdm, prevalence = 0.8, seed = 123456)
 }
 \arguments{
 \item{cdm}{A cdm_reference.}
+
+\item{prevalence}{Fraction of population included in the study table.}
+
+\item{seed}{Random number seed.}
 }
 \description{
 Benchmark the PatientPrfiles packages for a certain cdm object

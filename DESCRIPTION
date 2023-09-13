@@ -20,4 +20,5 @@ Imports:
     cli,
     CDMConnector,
     dplyr,
-    rlang
+    rlang,
+    magrittr

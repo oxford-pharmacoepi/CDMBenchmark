@@ -17,6 +17,8 @@
 #' Benchmark the PatientPrfiles packages for a certain cdm object
 #'
 #' @param cdm A cdm_reference.
+#' @param prevalence Fraction of population included in the study table.
+#' @param seed Random number seed.
 #'
 #' @export
 #'
@@ -42,7 +44,7 @@ benchmarkPatientProfiles <- function(cdm, prevalence = 0.8, seed = 123456) {
   result <- createBenchmarkResult(cdm, parameters)
 
   # create target cohort
-  result <- createStudyCohort(result, cdm, prevelence, seed)
+  result <- createStudyCohort(result, cdm, prevalence, seed)
 
   # create total time
   result <- totalTime(result)
@@ -50,7 +52,7 @@ benchmarkPatientProfiles <- function(cdm, prevalence = 0.8, seed = 123456) {
   return(result)
 }
 
-createStudyCohort <- function(result, cdm, prevelence, seed) {
+createStudyCohort <- function(result, cdm, prevalence, seed) {
   tictoc::tic()
   cdm$cohort1 <- createCohort(cdm = cdm, prevalence = prevalence, seed = seed)
   time <- tictoc::toc(quiet = TRUE)
