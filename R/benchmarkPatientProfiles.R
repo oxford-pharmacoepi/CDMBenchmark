@@ -26,12 +26,12 @@
 #'
 #' cdm <- mockPatientProfiles()
 #'
-#' bechmarkPatientProfiles(cdm)
+#' benchmarkPatientProfiles(cdm)
 #' }
 #'
 
 benchmarkPatientProfiles <- function(cdm) {
-  # initial checks
+    # initial checks
   checkCdm(cdm)
 
   #

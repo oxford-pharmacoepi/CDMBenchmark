@@ -18,7 +18,7 @@ library(PatientProfiles)
 
 cdm <- mockPatientProfiles()
 
-bechmarkPatientProfiles(cdm)
+benchmarkPatientProfiles(cdm)
 }
 
 }
