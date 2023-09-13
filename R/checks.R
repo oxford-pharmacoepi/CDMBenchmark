@@ -1,6 +1,6 @@
-# Copyright 2023 OXINFER
+# Copyright 2023 DARWIN EU (C)
 #
-# This file is part of EmptyPackage
+# This file is part of CDMBenchmark
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,22 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#' It says hello to whoever you want, by default world.
-#'
-#' @param nam name to say hello
-#'
-#' @return
-#' @export
-#'
-#' @examples
-#' #'
-#' \dontrun{
-#' library(EmptyPackage)
-#' hello()
-#' }
-hello <- function(nam = NULL) {
-  if (is.null(nam)) {
-    nam <- "world"
+checkCdm <- function(cdm) {
+  if ("cdm_reference" != class(cdm)) {
+    cli::cli_abort("Please provide a valid cdm reference.")
   }
-  print(paste0("Hello, ", nam))
+  invisible(cdm)
 }
