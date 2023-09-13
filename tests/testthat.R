@@ -1,4 +1,4 @@
 library(testthat)
-library(EmptyPackage)
+library(CDMBenchmark)
 
-test_check("EmptyPackage")
+test_check("CDMBenchmark")

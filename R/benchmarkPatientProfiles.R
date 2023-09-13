@@ -1,6 +1,6 @@
-# Copyright 2023 OXINFER
+# Copyright 2023 DARWIN EU (C)
 #
-# This file is part of EmptyPackage
+# This file is part of CDMBenchmark
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,22 +14,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#' It says hello to whoever you want, by default world.
+#' Benchmark the PatientPrfiles packages for a certain cdm object
 #'
-#' @param nam name to say hello
+#' @param cdm A cdm_reference.
 #'
-#' @return
 #' @export
 #'
 #' @examples
-#' #'
-#' \dontrun{
-#' library(EmptyPackage)
-#' hello()
+#' \donttest{
+#' library(PatientProfiles)
+#'
+#' cdm <- mockPatientProfiles()
+#'
+#' bechmarkPatientProfiles(cdm)
 #' }
-hello <- function(nam = NULL) {
-  if (is.null(nam)) {
-    nam <- "world"
-  }
-  print(paste0("Hello, ", nam))
+#'
+
+benchmarkPatientProfiles <- function(cdm) {
+  # initial checks
+  checkCdm(cdm)
+
+
 }
