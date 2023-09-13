@@ -17,4 +17,7 @@ Suggests:
 Imports: 
     PatientProfiles,
     tictoc,
-    cli
+    cli,
+    CDMConnector,
+    dplyr,
+    rlang

@@ -4,7 +4,7 @@
 \alias{benchmarkPatientProfiles}
 \title{Benchmark the PatientPrfiles packages for a certain cdm object}
 \usage{
-benchmarkPatientProfiles(cdm)
+benchmarkPatientProfiles(cdm, prevalence = 0.8, seed = 123456)
 }
 \arguments{
 \item{cdm}{A cdm_reference.}

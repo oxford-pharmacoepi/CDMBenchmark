@@ -29,10 +29,50 @@
 #' benchmarkPatientProfiles(cdm)
 #' }
 #'
-
-benchmarkPatientProfiles <- function(cdm) {
-    # initial checks
+benchmarkPatientProfiles <- function(cdm, prevalence = 0.8, seed = 123456) {
+  # initial checks
   checkCdm(cdm)
 
-  #
+  # list of parameters
+  parameters <- list(
+    "prevalence" = prevalence, "seed" = seed
+  )
+
+  # create result object
+  result <- createBenchmarkResult(cdm, parameters)
+
+  # create target cohort
+  result <- createStudyCohort(result, cdm, prevelence, seed)
+
+  # create total time
+  result <- totalTime(result)
+
+  return(result)
+}
+
+createStudyCohort <- function(result, cdm, prevelence, seed) {
+  tictoc::tic()
+  cdm$cohort1 <- createCohort(cdm = cdm, prevalence = prevalence, seed = seed)
+  time <- tictoc::toc(quiet = TRUE)
+  time <- as.numeric(time$toc - time$tic)
+  result <- appendNewTime(result, time, "create study cohort")
+  return(result)
+}
+totalTime <- function(result) {
+  cols <- colnames(result)
+  cols <- cols[!(cols %in% c(
+    "task", "time_taken_secs", "time_taken_mins", "time_taken_hours"
+  ))]
+  result <- result %>%
+    dplyr::union_all(
+      result %>%
+        dplyr::group_by(dplyr::pick(dplyr::all_of(cols))) %>%
+        dplyr::summarise(
+          time_taken_secs = sum(.data$time_taken_secs),
+          time_taken_mins = sum(.data$time_taken_mins),
+          time_taken_hours = sum(.data$time_taken_hours)
+        ) %>%
+        dplyr::mutate(task = "TOTAL TIME")
+    )
+  return(result)
 }
