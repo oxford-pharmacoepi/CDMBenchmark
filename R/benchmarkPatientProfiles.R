@@ -34,5 +34,5 @@ benchmarkPatientProfiles <- function(cdm) {
   # initial checks
   checkCdm(cdm)
 
-
+  #
 }
