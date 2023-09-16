@@ -41,7 +41,6 @@ createCohort <- function(cdm,
   cohort <- CDMConnector::newGeneratedCohortSet(cohortRef = cohortRef)
   return(cohort)
 }
-
 correctMock <- function(cdm) {
   cdm$cdm_source <- dplyr::tibble(
     cdm_source_name = "PP", cdm_source_abbreviation = "PP",
