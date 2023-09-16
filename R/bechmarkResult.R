@@ -44,3 +44,28 @@ appendNewTime <- function(benchmarkResult, time, task) {
         )
     )
 }
+totalTime <- function(result) {
+  tasks <- result$task
+  tasks <- tasks[!(grepl("TOTAL", tasks))]
+  result <- groupTotal(result, "TOTAL TIME", tasks)
+  return(result)
+}
+groupTotal <- function(result, task, tasks) {
+  cols <- colnames(result)
+  cols <- cols[!(cols %in% c(
+    "task", "time_taken_secs", "time_taken_mins", "time_taken_hours"
+  ))]
+  result <- result %>%
+    dplyr::union_all(
+      result %>%
+        dplyr::group_by(dplyr::pick(dplyr::all_of(cols))) %>%
+        dplyr::filter(.data$task %in% .env$tasks) %>%
+        dplyr::summarise(
+          time_taken_secs = sum(.data$time_taken_secs),
+          time_taken_mins = sum(.data$time_taken_mins),
+          time_taken_hours = sum(.data$time_taken_hours)
+        ) %>%
+        dplyr::mutate(task = .env$task)
+    )
+  return(result)
+}
